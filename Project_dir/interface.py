@@ -65,7 +65,7 @@ def run_gui():
     window.config(menu=menubar)
 
     #window configs(title, size, icon, bg-color)
-    window.title('SloSlu')
+    window.title('Sloth Sleuth')
     window.geometry('800x500')
     window.iconphoto(True, icon)
     window.config(bg="skyblue")
@@ -78,7 +78,6 @@ def run_gui():
     #adding components to Query Frame
     text_entry.grid(row=0, column=0, padx=5, pady=5)
     search_button.grid(row=0,column=1, padx=5, pady=5)
-
 
     #configure grid
     window.columnconfigure(0, weight=1)
