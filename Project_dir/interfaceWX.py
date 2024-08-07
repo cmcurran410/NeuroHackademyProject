@@ -4,7 +4,6 @@ import pandas as pd
 
 #non-wx vars (global)
 path = ""
-toolbar_bool = False
 
 class SlothSleuth(wx.Frame):
 
@@ -28,7 +27,8 @@ class SlothSleuth(wx.Frame):
         
         # View menu
         viewMenu = wx.Menu()
-        self.tableView = viewMenu.AppendCheckItem(wx.ID_ANY, 'Table View')
+        self.toolbarView = viewMenu.AppendCheckItem(wx.ID_ANY, 'Toolbar')
+        self.toolbarView.Check(check = True)
         menubar.Append(viewMenu, '&View')
 
         self.SetMenuBar(menubar)
@@ -36,7 +36,7 @@ class SlothSleuth(wx.Frame):
         # Bind menu events
         self.Bind(wx.EVT_MENU, self.OnImport, importItem)
         self.Bind(wx.EVT_MENU, self.OnQuit, quitItem)
-        self.Bind(wx.EVT_MENU, self.OnToggleToolbar, self.tableView)
+        self.Bind(wx.EVT_MENU, self.OnToggleToolbar, self.toolbarView)
         
         # Main panel
         panel = wx.Panel(self)
@@ -69,7 +69,8 @@ class SlothSleuth(wx.Frame):
         
         # Toolbar
         self.toolbar = self.CreateToolBar()
-        self.toolbar.AddTool(wx.ID_ANY, 'Sloth', wx.Bitmap("Project_dir/res/images/sloth_sleuth.png"))
+        self.toolbar.AddTool(wx.ID_OPEN, 'Sloth', wx.Bitmap("Project_dir/res/images/sloth_sleuth.png"))
+        self.toolbar.SetToolBitmapSize(size=(32, 32))
         self.toolbar.Realize()
 
     def OnImport(self, event):
