@@ -9,6 +9,10 @@
 
 #main.py puts everything together and runs the program!
 
-from interface import run_gui
+from interfaceWX import SlothSleuth
+import wx
 
-run_gui()
+if __name__ == '__main__':
+    app = wx.App(False)
+    frame = SlothSleuth(None, title='Sloth Sleuth')
+    app.MainLoop()
