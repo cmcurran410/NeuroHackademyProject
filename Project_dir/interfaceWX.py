@@ -129,7 +129,7 @@ class SlothSleuth(wx.Frame):
 
             path = fileDialog.GetPath()
             self.LoadData(path)
-            self.Bind(wx.EVT_MENU, pl.plot_charts(self.df), self.visualizeItem)
+            self.Bind(wx.EVT_MENU, lambda _, :pl.plot_charts(self.df), self.visualizeItem)
             self.DisplayViews()
             self.Refresh()
 
@@ -139,8 +139,6 @@ class SlothSleuth(wx.Frame):
         for index, row in self.df.iterrows():
             print(type(row['Date']))
         dataLoaded = True
-        self.column_names = self.df.columns
-        print(self.column_names)
         return self.df
 
     def DisplayViews(self):

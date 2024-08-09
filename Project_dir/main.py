@@ -11,8 +11,10 @@
 
 from interfaceWX import SlothSleuth
 import wx
+import os
 
 if __name__ == '__main__':
+    os.chdir('C:/Users/NPL/OneDrive - Texas State University/NeuroHackademyProject')
     app = wx.App(False)
     frame = SlothSleuth(None, title='Sloth Sleuth')
     frame.SetIcon(wx.Icon("Project_dir/res/images/sloth_sleuth.png"))
