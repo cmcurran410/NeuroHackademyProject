@@ -137,7 +137,7 @@ class SlothSleuth(wx.Frame):
         self.df = pd.read_excel(path)
         print(len(self.df))
         for index, row in self.df.iterrows():
-            print(type(row['Date']))
+            print(type(row['Year']))
         dataLoaded = True
         return self.df
 
@@ -258,7 +258,10 @@ class SlothSleuth(wx.Frame):
     
     def getFilterByDate(self):
         filterentry = wx.TextEntryDialog(self, "Enter a minimum year value to filter by.")
-        return filterentry.GetValue()
+        if filterentry.ShowModal() == wx.ID_OK:
+            return filterentry.GetValue()
+        else:
+            filterentry.Destroy()
     
     def filterByDate(self, event):
         self.dateval = self.getFilterByDate()
@@ -266,11 +269,10 @@ class SlothSleuth(wx.Frame):
         self.dateval = int(self.dateval)
         print(type(self.dateval))
         for index, row in self.df.iterrows():
-            print(type(row['Date']))
-            if isinstance(row['Date'], int):
+            if isinstance(row['Year'], int):
                 if self.dateval > nextyear or self.dateval < 1:
                     wx.MessageBox(f'Please enter a real year.', 'Error: nonexistent year', wx.OK | wx.ICON_ERROR)
                 else: 
-                    filtereddate = self.df.loc[row['Date'] >= self.dateval]
+                    filtereddate = self.df.loc[row['Year'] >= self.dateval]
             else:
                 continue
